@@ -1,12 +1,20 @@
 {
   "name": "hyperdb-explorer",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
+  "description": "An interactive CLI tool to explore the contents of a hyperdb.",
+  "bin": "index.js",
+  "keywords": [
+    "hyperdb",
+    "cli"
+  ],
   "author": "harry lachenmayer <harrylachenmayer@gmail.com>",
-  "license": "ISC"
+  "license": "MIT",
+  "dependencies": {
+    "autosuggest-trie": "^2.1.1",
+    "diffy": "^2.0.0",
+    "hyperdb": "^3.5.0",
+    "kleur": "^2.0.1",
+    "menu-string": "^1.2.0",
+    "sort-by": "^1.2.0"
+  }
 }
