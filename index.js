@@ -21,9 +21,9 @@ db.createReadStream()
   .on('data', n => {
     nodes.push(n)
   })
-  .on('end', render)
+  .on('end', setup)
 
-function render() {
+function setup() {
   const listItems = nodes.map(([node, ...conflicts], i) => ({
     i,
     key: node.key,
@@ -47,7 +47,7 @@ function render() {
       }
     }
     if (items.length === 0) {
-      menu = new Menu({ items: [{ text: 'No keys', separator: true }] })
+      menu = new Menu({ items: [{ text: 'No keys found.', separator: true }] })
     } else {
       menu = new Menu({
         items,
@@ -80,13 +80,21 @@ function render() {
     diffy.render()
   })
 
-  diffy.render(() => {
+  diffy.render(function render() {
     if (detail != null) {
-      return renderKey(nodes[detail])
+      return renderDetail(nodes[detail])
     } else {
-      return menu.toString() + `\nType to filter: ${colors.bold(input.line())}`
+      return renderList()
     }
   })
+
+  function renderList() {
+    return (
+      menu.toString() +
+      '\n\nPress enter to select a key.' +
+      `\nStart typing to filter keys: ${colors.bold(input.line())}`
+    )
+  }
 }
 
 function renderListItem({ key, conflicts }, selected) {
@@ -96,12 +104,13 @@ function renderListItem({ key, conflicts }, selected) {
   return selected ? colors.bold(str) : str
 }
 
-function renderKey(nodes) {
+function renderDetail(nodes) {
   const lines = [colors.bold(nodes[0].key)]
   for (const [i, node] of nodes.entries()) {
     lines.push(`\nNode #${i}`)
     lines.push('\n' + renderNode(node))
   }
+  lines.push('\nPress enter to go back.')
   return lines.join('\n')
 }
 
