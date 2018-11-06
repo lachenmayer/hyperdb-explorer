@@ -1,6 +1,6 @@
 {
   "name": "hyperdb-explorer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An interactive CLI tool to explore the contents of a hyperdb.",
   "bin": "index.js",
   "keywords": [
