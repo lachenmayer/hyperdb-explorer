@@ -5,14 +5,29 @@ const input = require('diffy/input')()
 const hyperdb = require('hyperdb')
 const colors = require('kleur')
 const Menu = require('menu-string')
+const package = require('./package')
 const sortBy = require('sort-by')
 
 const args = process.argv.slice(2)
+
 if (args.length != 1) {
   console.error('usage: hyperdb-explorer <path-to-hyperdb>')
   process.exit(1)
 }
+
 const path = args[0]
+
+if (path === '-v' || path === '--version') {
+  console.error('hyperdb-explorer', package.version)
+  process.exit()
+}
+
+if (path === '--help') {
+  console.error('usage: hyperdb-explorer <path-to-hyperdb>')
+  console.error()
+  console.error('An interactive CLI tool to explore the contents of a hyperdb.')
+  process.exit()
+}
 
 const db = hyperdb(path)
 
