@@ -9,6 +9,10 @@
   ],
   "author": "harry lachenmayer <harrylachenmayer@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lachenmayer/hyperdb-explorer"
+  },
   "dependencies": {
     "autosuggest-trie": "^2.1.1",
     "diffy": "^2.0.0",
